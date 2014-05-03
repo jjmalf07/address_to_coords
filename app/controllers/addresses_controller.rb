@@ -3,7 +3,11 @@ require 'json'
 
 class AddressesController < ApplicationController
   def fetch_coordinates
-    @address = params[:coordinates]
+    if params[:coordinates].present?
+        @address = params[:coordinates]
+    else
+        @address = "the corner of foster and sheridan"
+    end
     @url_safe_address = URI.encode(@address)
 
     # Your code goes here.
